@@ -40,7 +40,6 @@ days = days_in_month(year, month)
 print(days)
 
 
-#------------------------------days in month--------
 logo = """
  _____________________
 |  _________________  |
@@ -79,19 +78,27 @@ operations = {
   '/':divide,
 }
 
-#function = operations['+']
-#function(2,3)
-
 num1 = int(input('First number:\n'))
-num2 = int(input('Second number:\n'))
 
-print('\nAvailable operations:')
-for symbol in operations:
-    print (symbol)
+def calc_loop (num1):
+  print('\nAvailable operations:')
+  for symbol in operations:
+      print (symbol)
+  operation_symbol = input('Enter an operation from available above:\n')
 
-operation_symbol = input('Enter an operation from above:\n')
-calc_function = operations[operation_symbol]
-answer = calc_function(num1, num2)
+  num2 = int(input('Next number:\n'))
+  calc_function = operations[operation_symbol]
+  answer = calc_function(num1, num2)
+  print(f'\n{num1} {operation_symbol} {num2} = {answer}')
 
-print(f'{num1} {operation_symbol} {num2} = {answer}')
+  return answer
 
+#main loop
+running = True #change it later in the loop to stop
+while running: #same as: while running == True
+    num1=calc_loop(num1)
+
+    running_flag = input("Keep calculating with TOTAL?\n(enter 'n' for EXIT, or 'y' for yes)\n")
+    if running_flag == 'n': #only 'n' is checked, any other button would give 'yes'
+        running = False
+        print('the end...')
